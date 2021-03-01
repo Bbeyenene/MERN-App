@@ -1,20 +1,19 @@
-const express = require('express');
-//const router = express.Router();
-const router = require('express-promise-router')();
+const router = require("express-promise-router")();
 
-const UsersController = require('../controllers/users');
+const {
+  index,
+  newUser,
+  getUser,
+  replaceUser,
+  updateUser,
+  getUserCars,
+  newUserCars,
+} = require("../controllers/users");
 
-router.route('/')
-    .get(UsersController.index)
-    .post(UsersController.newUser)
+router.route("/").get(index).post(newUser);
 
-router.route('/:userId')
-    .get(UsersController.getUser)
-    .put(UsersController.replaceUser)
-    .patch(UsersController.updateUser)
+router.route("/:userId").get(getUser).put(replaceUser).patch(updateUser);
 
-router.route('/:userId/cars')
-    .get(UsersController.getUserCars)
-    .post(UsersController.newUserCars)
+router.route("/:userId/cars").get(getUserCars).post(newUserCars);
 
 module.exports = router;
